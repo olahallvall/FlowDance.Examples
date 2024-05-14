@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="FlowDance.Examples.TripBookingSaga.HotelService.Hotel" CodeBehind="Hotel.svc.cs" %>
