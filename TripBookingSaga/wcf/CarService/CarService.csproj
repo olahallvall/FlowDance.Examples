@@ -162,6 +162,9 @@
   <ItemGroup>
     <Content Include="Car.svc" />
     <Content Include="Compensating.svc" />
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Connected Services\HotelService\Hotel.disco" />
     <None Include="Connected Services\HotelService\configuration91.svcinfo" />
     <None Include="Connected Services\HotelService\configuration.svcinfo" />

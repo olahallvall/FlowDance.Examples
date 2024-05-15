@@ -16,10 +16,10 @@ namespace BookingService.CarService {
     public interface ICar {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICar/BookCar", ReplyAction="http://tempuri.org/ICar/BookCarResponse")]
-        void BookCar(string passportNumber);
+        void BookCar(string passportNumber, System.Guid traceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICar/BookCar", ReplyAction="http://tempuri.org/ICar/BookCarResponse")]
-        System.Threading.Tasks.Task BookCarAsync(string passportNumber);
+        System.Threading.Tasks.Task BookCarAsync(string passportNumber, System.Guid traceId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace BookingService.CarService {
                 base(binding, remoteAddress) {
         }
         
-        public void BookCar(string passportNumber) {
-            base.Channel.BookCar(passportNumber);
+        public void BookCar(string passportNumber, System.Guid traceId) {
+            base.Channel.BookCar(passportNumber, traceId);
         }
         
-        public System.Threading.Tasks.Task BookCarAsync(string passportNumber) {
-            return base.Channel.BookCarAsync(passportNumber);
+        public System.Threading.Tasks.Task BookCarAsync(string passportNumber, System.Guid traceId) {
+            return base.Channel.BookCarAsync(passportNumber, traceId);
         }
     }
 }

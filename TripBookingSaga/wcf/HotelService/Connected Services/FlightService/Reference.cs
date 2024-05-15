@@ -16,10 +16,10 @@ namespace FlowDance.Examples.TripBookingSaga.HotelService.FlightService {
     public interface IFlight {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlight/BookFlight", ReplyAction="http://tempuri.org/IFlight/BookFlightResponse")]
-        void BookFlight(string passportNumber);
+        void BookFlight(string passportNumber, System.Guid traceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFlight/BookFlight", ReplyAction="http://tempuri.org/IFlight/BookFlightResponse")]
-        System.Threading.Tasks.Task BookFlightAsync(string passportNumber);
+        System.Threading.Tasks.Task BookFlightAsync(string passportNumber, System.Guid traceId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace FlowDance.Examples.TripBookingSaga.HotelService.FlightService {
                 base(binding, remoteAddress) {
         }
         
-        public void BookFlight(string passportNumber) {
-            base.Channel.BookFlight(passportNumber);
+        public void BookFlight(string passportNumber, System.Guid traceId) {
+            base.Channel.BookFlight(passportNumber, traceId);
         }
         
-        public System.Threading.Tasks.Task BookFlightAsync(string passportNumber) {
-            return base.Channel.BookFlightAsync(passportNumber);
+        public System.Threading.Tasks.Task BookFlightAsync(string passportNumber, System.Guid traceId) {
+            return base.Channel.BookFlightAsync(passportNumber, traceId);
         }
     }
 }

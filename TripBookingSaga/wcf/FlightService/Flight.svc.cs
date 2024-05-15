@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 
 namespace FlowDance.Examples.TripBookingSaga.FlightService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Flight" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Flight.svc or Flight.svc.cs at the Solution Explorer and start debugging.
     public class Flight : IFlight
     {
-        public void BookFlight(string passportNumber)
+        public void BookFlight(string passportNumber, Guid traceId)
         {
-            throw new NotImplementedException();
+            throw new Exception("No flight available!");
         }
     }
 }

@@ -161,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Compensating.svc" />
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Connected Services\FlightService\Flight.disco" />
     <None Include="Connected Services\FlightService\configuration91.svcinfo" />
     <None Include="Connected Services\FlightService\configuration.svcinfo" />

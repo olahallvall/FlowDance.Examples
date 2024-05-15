@@ -7,18 +7,18 @@ namespace FlowDance.Examples.TripBookingSaga.CarService
 {
     public class Car : ICar
     {
-        public void BookCar(string passportNumber)
+        public void BookCar(string passportNumber, Guid traceId)
         {
             var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConsole();
             });
 
-            var traceId = Guid.NewGuid();
-
             using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:55057/Compensating.svc/Compensate"), traceId, loggerFactory))
             {
-                /* Perform transactional work here */
+                var svr = new HotelService.HotelClient();
+                svr.BookHotel(passportNumber, traceId);
+
                 compSpanRoot.Complete();
             }
         }

@@ -23,7 +23,9 @@ namespace BookingService
 
             using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:49983/Compensating.svc/Compensate"), traceId, loggerFactory))
             {
-                /* Perform transactional work here */
+                var svr = new CarService.CarClient();
+                svr.BookCar(passportNumber, traceId);
+
                 compSpanRoot.Complete();
             }
         }
