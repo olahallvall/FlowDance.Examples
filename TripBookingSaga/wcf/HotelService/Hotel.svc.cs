@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+﻿using FlowDance.Client;
+using FlowDance.Common.CompensatingActions;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace FlowDance.Examples.TripBookingSaga.HotelService
 {
@@ -13,7 +11,18 @@ namespace FlowDance.Examples.TripBookingSaga.HotelService
     {
         public void BookHotel(string passportNumber)
         {
-            throw new NotImplementedException();
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+            });
+
+            var traceId = Guid.NewGuid();
+
+            using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:55121/Compensating.svc/Compensate"), traceId, loggerFactory))
+            {
+                /* Perform transactional work here */
+                compSpanRoot.Complete();
+            }
         }
     }
 }

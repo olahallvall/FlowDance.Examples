@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarService", "TripBookingSaga\wcf\CarService\CarService.csproj", "{7CC185D9-7449-48E5-A412-53C98C0E2DF9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F8A1DE65-3B07-4F52-B981-874E2D4E9BDF} = {F8A1DE65-3B07-4F52-B981-874E2D4E9BDF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TripBookingSaga", "TripBookingSaga", "{0C2224E0-E03D-4EF4-8870-84DBFA316273}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightService", "TripBookingSaga\wcf\FlightService\FlightService.csproj", "{49A3DFE8-921A-41DD-9204-46D680D680C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelService", "TripBookingSaga\wcf\HotelService\HotelService.csproj", "{F8A1DE65-3B07-4F52-B981-874E2D4E9BDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{49A3DFE8-921A-41DD-9204-46D680D680C5} = {49A3DFE8-921A-41DD-9204-46D680D680C5}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{821D656C-59A6-4061-8938-CD9BAF7D3C83}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,10 +26,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingService", "TripBookingSaga\wcf\BookingService\BookingService.csproj", "{BF5785E5-9E14-4021-8205-D0EA70CE99F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7CC185D9-7449-48E5-A412-53C98C0E2DF9} = {7CC185D9-7449-48E5-A412-53C98C0E2DF9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wcf", "wcf", "{9AB409F5-F2B9-4094-97D0-1D8AC8F645D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingApplication", "TripBookingSaga\wcf\BookingApplication\BookingApplication.csproj", "{61CA0A8F-7D4A-41ED-B76C-7388111BEF50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9} = {BF5785E5-9E14-4021-8205-D0EA70CE99F9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rest", "rest", "{86D4C59A-0529-410D-AA2F-ED5511716089}"
 EndProject

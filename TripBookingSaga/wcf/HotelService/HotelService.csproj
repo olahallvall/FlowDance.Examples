@@ -160,13 +160,30 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Compensating.svc" />
+    <None Include="Connected Services\FlightService\Flight.disco" />
+    <None Include="Connected Services\FlightService\configuration91.svcinfo" />
+    <None Include="Connected Services\FlightService\configuration.svcinfo" />
+    <None Include="Connected Services\FlightService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Hotel.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compensating.svc.cs">
+      <DependentUpon>Compensating.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FlightService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.svc.cs">
       <DependentUpon>Hotel.svc</DependentUpon>
     </Compile>
+    <Compile Include="ICompensating.cs" />
     <Compile Include="IHotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -174,6 +191,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\FlightService\Flight.wsdl" />
+    <None Include="Connected Services\FlightService\Flight.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FlightService\Flight1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -181,6 +205,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FlightService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
