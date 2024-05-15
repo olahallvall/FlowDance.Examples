@@ -12,6 +12,6 @@ namespace FlowDance.Examples.TripBookingSaga.HotelService
     public interface IHotel
     {
         [OperationContract]
-        void DoWork();
+        void BookHotel(string passportNumber);
     }
 }

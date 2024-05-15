@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingService", "TripBookingSaga\BookingService\BookingService.csproj", "{BF5785E5-9E14-4021-8205-D0EA70CE99F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{21209E4B-077F-438D-BAFB-3232A4ED7A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21209E4B-077F-438D-BAFB-3232A4ED7A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21209E4B-077F-438D-BAFB-3232A4ED7A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{49A3DFE8-921A-41DD-9204-46D680D680C5} = {0C2224E0-E03D-4EF4-8870-84DBFA316273}
 		{F8A1DE65-3B07-4F52-B981-874E2D4E9BDF} = {0C2224E0-E03D-4EF4-8870-84DBFA316273}
 		{21209E4B-077F-438D-BAFB-3232A4ED7A6E} = {0C2224E0-E03D-4EF4-8870-84DBFA316273}
+		{BF5785E5-9E14-4021-8205-D0EA70CE99F9} = {0C2224E0-E03D-4EF4-8870-84DBFA316273}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {55A7AF93-C3BC-4270-897E-4F6775801C7D}

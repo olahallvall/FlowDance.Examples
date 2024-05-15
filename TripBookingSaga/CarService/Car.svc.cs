@@ -11,8 +11,9 @@ namespace FlowDance.Examples.TripBookingSaga.CarService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Car.svc or Car.svc.cs at the Solution Explorer and start debugging.
     public class Car : ICar
     {
-        public void DoWork()
+        public void BookCar(string passportNumber)
         {
+            throw new NotImplementedException();
         }
     }
 }

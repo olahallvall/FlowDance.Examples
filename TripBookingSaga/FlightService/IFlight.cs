@@ -12,6 +12,6 @@ namespace FlowDance.Examples.TripBookingSaga.FlightService
     public interface IFlight
     {
         [OperationContract]
-        void DoWork();
+        void BookFlight(string passportNumber);
     }
 }

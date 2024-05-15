@@ -12,6 +12,6 @@ namespace FlowDance.Examples.TripBookingSaga.CarService
     public interface ICar
     {
         [OperationContract]
-        void DoWork();
+        void BookCar(string passportNumber);
     }
 }

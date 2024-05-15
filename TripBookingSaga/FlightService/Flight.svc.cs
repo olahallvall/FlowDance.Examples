@@ -11,8 +11,9 @@ namespace FlowDance.Examples.TripBookingSaga.FlightService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Flight.svc or Flight.svc.cs at the Solution Explorer and start debugging.
     public class Flight : IFlight
     {
-        public void DoWork()
+        public void BookFlight(string passportNumber)
         {
+            throw new NotImplementedException();
         }
     }
 }
