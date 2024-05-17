@@ -16,7 +16,7 @@ namespace FlowDance.Examples.TripBookingSaga.FlightService
 
             try
             {
-                using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:55121/Compensating.svc/Compensate"), traceId, loggerFactory))
+                using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:55117/Compensating.svc/Compensate"), traceId, loggerFactory))
                 {
                     throw new Exception("No flight available!");
 
