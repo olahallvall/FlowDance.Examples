@@ -13,7 +13,7 @@ namespace CarService
     public interface ICompensating
     {
         [OperationContract]
-        [WebInvoke(UriTemplate = "compensate")]
+        [WebInvoke(UriTemplate = "compensate", Method = "POST", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         void Compensate(string postData);
     }
 }

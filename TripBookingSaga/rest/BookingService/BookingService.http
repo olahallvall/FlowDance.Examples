@@ -3,4 +3,10 @@
 GET {{BookingService_HostAddress}}/weatherforecast/
 Accept: application/json
 
+
+GET {{BookingService_HostAddress}}/booking/
+Accept: application/json
+
+
+
 ###

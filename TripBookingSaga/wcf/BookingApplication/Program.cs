@@ -9,6 +9,8 @@ namespace BookingApplication
             Console.Write("Hit enter to run make a booking");
             var name = Console.ReadLine();
 
+
+
             var passportNumber = "34-12435488";
             var svr = new BookingService.BookingClient();
             svr.BookTrip(passportNumber);
