@@ -8,13 +8,15 @@ using System.Text;
 using System.Web;
 
 namespace BookingService
-{
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "ICompensating" in both code and config file together.
+{    
     [ServiceContract]
     public interface ICompensating
     {
         [OperationContract]
-        [WebInvoke(UriTemplate = "compensate")]
-        void Compensate(string postData);
+        [WebInvoke(UriTemplate = "compensate", Method = "POST",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare)]
+        void Compensate();
     }
 }
