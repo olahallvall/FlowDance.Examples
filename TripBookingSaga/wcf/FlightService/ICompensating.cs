@@ -13,7 +13,10 @@ namespace FlightService
     public interface ICompensating
     {
         [OperationContract]
-        [WebInvoke(UriTemplate = "compensate")]
-        void Compensate(string postData);
+        [WebInvoke(UriTemplate = "compensate", Method = "POST",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare)]
+        void Compensate();
     }
 }
