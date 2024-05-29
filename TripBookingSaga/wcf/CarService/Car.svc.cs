@@ -7,7 +7,7 @@ namespace FlowDance.Examples.TripBookingSaga.CarService
 {
     public class Car : ICar
     {
-        public void BookCar(string passportNumber, Guid traceId)
+        public int BookCar(string passportNumber, Guid traceId)
         {
             var loggerFactory = LoggerFactory.Create(builder =>
             {
@@ -21,6 +21,8 @@ namespace FlowDance.Examples.TripBookingSaga.CarService
 
                 compSpanRoot.Complete();
             }
+
+            return 1223;
         }
     }
 }

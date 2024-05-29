@@ -23,10 +23,14 @@ namespace BookingService
 
             using (var compSpanRoot = new CompensationSpan(new HttpCompensatingAction("http://localhost:49983/Compensating.svc/Compensate"), traceId, loggerFactory))
             {
-                var svr = new CarService.CarClient();
-                svr.BookCar(passportNumber, traceId);
+                // Generate a BookingNr in local database.
+                var bookingNr = "45TY-UI-8989";
+                compSpanRoot.AddCompensationData(bookingNr, "BookingNr");
 
-                compSpanRoot.Complete();
+                var svr = new CarService.CarClient();
+                var carNumber = svr.BookCar(passportNumber, traceId);
+
+                compSpanRoot.Complete(carNumber.ToString(), "CarNumber");
             }
         }
     }

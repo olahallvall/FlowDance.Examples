@@ -4,6 +4,9 @@ using System.ServiceModel.Web;
 using System.ServiceModel;
 using System.Text;
 using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using FlowDance.Common.Events;
 
 namespace BookingService
 {
@@ -16,8 +19,12 @@ namespace BookingService
                 builder.AddConsole();
             });
 
-             var json = GetJsonFromBody();
-            // "Rollback" to a good state :)
+            var json = GetJsonFromBody();
+
+            var spanCompensationData = JsonConvert.DeserializeObject<List<SpanCompensationData>>(json);
+
+
+            // "Rollback" to a good state based on spanCompensationData:)
         }
         private string GetJsonFromBody()
         {
