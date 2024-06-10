@@ -1,4 +1,5 @@
 using BookingService.Models;
+using BookingService.Services;
 using FlowDance.Client;
 using FlowDance.Common.CompensatingActions;
 using FlowDance.Common.Events;
@@ -12,28 +13,39 @@ namespace BookingService.Controllers
     public class BookingController : ControllerBase
     {
         private readonly ILoggerFactory _loggerFactory;
+        private readonly CarService _carService;
 
-        public BookingController(ILoggerFactory loggerFactory)
+        public BookingController(ILoggerFactory loggerFactory, CarService carService)
         {
             _loggerFactory = loggerFactory;
+            _carService = carService;
         }
 
         [HttpPost("booktrip")]
         public async Task<IActionResult> BookTrip([FromBody] Trip trip)
         {
             var traceId = Guid.NewGuid();
-
+            
             using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://localhost:5112/api/Compensating/compensate"), traceId, _loggerFactory))
             {
                 using var db = new TripContext();
-                db.Add(new Trip() { CarId = trip.CarId, PassportNumber = trip.PassportNumber });
-                await db.SaveChangesAsync();
+                var tripEntity = new Trip() { CarId = trip.CarId, PassportNumber = trip.PassportNumber };
+                db.Add(tripEntity);
 
                 db.ChangeTracker.DetectChanges();
-                compSpan.AddCompensationData(db.ChangeTracker.DebugView.ShortView, "ShortView");
-                compSpan.AddCompensationData(db.ChangeTracker.DebugView.LongView, "LongView");
+                var shortView = db.ChangeTracker.DebugView.ShortView;
+                var longView = db.ChangeTracker.DebugView.LongView;
 
-                //compSpan.Complete();
+                await db.SaveChangesAsync();
+
+                compSpan.AddCompensationData(tripEntity.TripId.ToString(), "TripId");
+                compSpan.AddCompensationData(shortView, "ShortView");
+                compSpan.AddCompensationData(longView, "LongView");
+
+                // Book a Car
+                _carService.BookCar(trip.PassportNumber, tripEntity.TripId, traceId);
+
+                compSpan.Complete();
             }
 
             return Ok();
