@@ -29,9 +29,10 @@ namespace HotelService.Controllers
             {
 
                 // Book a flight
-                await _flightService.BookFlight(hotel.PassportNumber, hotel.TripId, traceId);
+                var retval = await _flightService.BookFlight(hotel.PassportNumber, hotel.TripId, traceId);
 
-                compSpan.Complete();
+                if(retval)
+                    compSpan.Complete();
             }
 
             return Ok();

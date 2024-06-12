@@ -30,15 +30,15 @@ namespace BookingService.Controllers
        
                 db.Add(trip);
 
-                db.ChangeTracker.DetectChanges();
-                var shortView = db.ChangeTracker.DebugView.ShortView;
-                var longView = db.ChangeTracker.DebugView.LongView;
+                //db.ChangeTracker.DetectChanges();
+                //var shortView = db.ChangeTracker.DebugView.ShortView;
+                //var longView = db.ChangeTracker.DebugView.LongView;
 
                 await db.SaveChangesAsync();
 
+                //compSpan.AddCompensationData(shortView, "ShortView");
+                //compSpan.AddCompensationData(longView, "LongView");
                 compSpan.AddCompensationData(trip.TripId.ToString(), "TripId");
-                compSpan.AddCompensationData(shortView, "ShortView");
-                compSpan.AddCompensationData(longView, "LongView");
 
                 // Book a Car
                 await _carService.BookCar(trip.PassportNumber, trip.TripId, traceId);
