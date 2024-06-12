@@ -1,3 +1,5 @@
+using CarService.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +13,8 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 builder.Services.AddHttpClient();
+
+builder.Services.AddTransient<IHotelService, HotelService>();
 
 var app = builder.Build();
 

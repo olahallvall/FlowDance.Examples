@@ -1,5 +1,4 @@
-﻿using FlowDance.Common.CompensatingActions;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text;
 
 namespace BookingService.Services
@@ -14,7 +13,7 @@ namespace BookingService.Services
             _httpClientFactory = httpClientFactory;
             _loggerFactory = iloggerFactory;
         }
-        public void BookCar(string passportNumber, int tripId, Guid traceId) 
+        public async Task<bool> BookCar(string passportNumber, int tripId, Guid traceId) 
         {
             var httpClient = _httpClientFactory.CreateClient();
 
@@ -22,7 +21,11 @@ namespace BookingService.Services
             httpRequest.Headers.Add("x-correlation-id", traceId.ToString());
             httpRequest.Content = new StringContent(JsonConvert.SerializeObject(new Car() { PassportNumber = passportNumber, TripId = tripId }), Encoding.UTF8, $"application/json");
 
-            var response = httpClient.SendAsync(httpRequest);
+            var response = await httpClient.SendAsync(httpRequest);
+            if(response.IsSuccessStatusCode)
+                return true;
+
+            return false;
         }
     }
 }

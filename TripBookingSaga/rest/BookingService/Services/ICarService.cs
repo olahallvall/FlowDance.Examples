@@ -2,6 +2,6 @@
 {
     public interface ICarService
     {
-        void BookCar(string passportNumber, int TripId, Guid traceId);
+        Task<bool> BookCar(string passportNumber, int TripId, Guid traceId);
     }
 }

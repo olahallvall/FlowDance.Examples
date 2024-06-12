@@ -2,9 +2,7 @@ using BookingService.Models;
 using BookingService.Services;
 using FlowDance.Client;
 using FlowDance.Common.CompensatingActions;
-using FlowDance.Common.Events;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BookingService.Controllers
 {
@@ -29,8 +27,8 @@ namespace BookingService.Controllers
             using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://localhost:5112/api/Compensating/compensate"), traceId, _loggerFactory))
             {
                 using var db = new TripContext();
-                var tripEntity = new Trip() { CarId = trip.CarId, PassportNumber = trip.PassportNumber };
-                db.Add(tripEntity);
+       
+                db.Add(trip);
 
                 db.ChangeTracker.DetectChanges();
                 var shortView = db.ChangeTracker.DebugView.ShortView;
@@ -38,17 +36,17 @@ namespace BookingService.Controllers
 
                 await db.SaveChangesAsync();
 
-                compSpan.AddCompensationData(tripEntity.TripId.ToString(), "TripId");
+                compSpan.AddCompensationData(trip.TripId.ToString(), "TripId");
                 compSpan.AddCompensationData(shortView, "ShortView");
                 compSpan.AddCompensationData(longView, "LongView");
 
                 // Book a Car
-                _carService.BookCar(trip.PassportNumber, tripEntity.TripId, traceId);
+                await _carService.BookCar(trip.PassportNumber, trip.TripId, traceId);
 
                 compSpan.Complete();
             }
 
-            return Ok();
+            return Ok(trip);
         }
     }
 }

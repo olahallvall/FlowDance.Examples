@@ -4,6 +4,5 @@
     {
         public int TripId { get; set; }
         public string PassportNumber { get; set; }
-        public string CarId { get; set; }
     }
 }

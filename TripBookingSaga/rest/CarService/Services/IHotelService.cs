@@ -2,6 +2,6 @@
 {
     public interface IHotelService
     {
-        void BookHotel(string passportNumber, Guid traceId);
+        Task<bool> BookHotel(string passportNumber, int tripId, Guid traceId);
     }
 }

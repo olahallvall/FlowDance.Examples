@@ -1,6 +1,6 @@
-﻿namespace CarService.Controllers
+﻿namespace HotelService.Models
 {
-    public class Car
+    public class Hotel
     {
         public string PassportNumber { get; set; }
         public int TripId { get; set; }

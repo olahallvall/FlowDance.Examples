@@ -1,31 +1,32 @@
-﻿using FlowDance.Client;
-using FlowDance.Common.CompensatingActions;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System.Text;
 
 namespace HotelService.Services
 {
-    public class FlightService
+    public class FlightService : IFlightService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILoggerFactory _iloggerFactory;
+        private readonly ILoggerFactory _loggerFactory;
 
         public FlightService(IHttpClientFactory httpClientFactory, ILoggerFactory iloggerFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _iloggerFactory = iloggerFactory;
+            _loggerFactory = iloggerFactory;
         }
 
-        public void BookFlight(string passportNumber, Guid traceId)
+        public async Task<bool> BookFlight(string passportNumber, int tripId, Guid traceId)
         {
-            using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://localhost:5075/api/Compensating/compensate"), traceId, _iloggerFactory))
-            {
-                var httpClient = _httpClientFactory.CreateClient();
+            var httpClient = _httpClientFactory.CreateClient();
 
-                throw new Exception("No flight available!");
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5113/api/flight/bookflight");
+            httpRequest.Headers.Add("x-correlation-id", traceId.ToString());
+            httpRequest.Content = new StringContent(JsonConvert.SerializeObject(new Flight() { PassportNumber = passportNumber, TripId = tripId }), Encoding.UTF8, $"application/json");
 
-                compSpan.Complete();
-            }
+            var response = await httpClient.SendAsync(httpRequest);
+            if (response.IsSuccessStatusCode)
+                return true;
+
+            return false;
         }
     }
 }
