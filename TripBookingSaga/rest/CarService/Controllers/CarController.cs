@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.Controllers
 {
+    [Route("api/[controller]")]
     public class CarController : ControllerBase
     {
         private readonly ILoggerFactory _iloggerFactory;

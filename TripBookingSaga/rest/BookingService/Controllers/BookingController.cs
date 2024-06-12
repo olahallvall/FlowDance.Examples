@@ -13,9 +13,9 @@ namespace BookingService.Controllers
     public class BookingController : ControllerBase
     {
         private readonly ILoggerFactory _loggerFactory;
-        private readonly CarService _carService;
+        private readonly ICarService _carService;
 
-        public BookingController(ILoggerFactory loggerFactory, CarService carService)
+        public BookingController(ILoggerFactory loggerFactory, ICarService carService)
         {
             _loggerFactory = loggerFactory;
             _carService = carService;

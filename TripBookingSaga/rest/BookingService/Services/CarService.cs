@@ -1,20 +1,28 @@
-﻿namespace BookingService.Services
+﻿using FlowDance.Common.CompensatingActions;
+using Newtonsoft.Json;
+using System.Text;
+
+namespace BookingService.Services
 {
     public class CarService : ICarService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILoggerFactory _iloggerFactory;
+        private readonly ILoggerFactory _loggerFactory;
 
         public CarService(IHttpClientFactory httpClientFactory, ILoggerFactory iloggerFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _iloggerFactory = iloggerFactory;
+            _loggerFactory = iloggerFactory;
         }
-        public void BookCar(string passportNumber, int TripId, Guid traceId) 
+        public void BookCar(string passportNumber, int tripId, Guid traceId) 
         {
             var httpClient = _httpClientFactory.CreateClient();
 
-           
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5043/api/car/bookcar");
+            httpRequest.Headers.Add("x-correlation-id", traceId.ToString());
+            httpRequest.Content = new StringContent(JsonConvert.SerializeObject(new Car() { PassportNumber = passportNumber, TripId = tripId }), Encoding.UTF8, $"application/json");
+
+            var response = httpClient.SendAsync(httpRequest);
         }
     }
 }

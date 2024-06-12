@@ -1,5 +1,4 @@
 ﻿using FlowDance.Common.Events;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookingService.Controllers

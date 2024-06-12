@@ -1,4 +1,4 @@
-﻿namespace CarService.Controllers
+﻿namespace BookingService.Services
 {
     public class Car
     {
