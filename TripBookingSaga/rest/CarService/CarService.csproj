@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FlowDance.Client" Version="1.0.9-alpha" />
+    <PackageReference Include="FlowDance.Client" Version="1.0.10-alpha" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
