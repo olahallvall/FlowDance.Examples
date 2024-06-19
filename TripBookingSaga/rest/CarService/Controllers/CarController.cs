@@ -1,7 +1,7 @@
 ﻿using CarService.Models;
 using CarService.Services;
 using FlowDance.Client;
-using FlowDance.Common.CompensatingActions;
+using FlowDance.Client.AspNetCore.ActionFilters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarService.Controllers
@@ -18,20 +18,15 @@ namespace CarService.Controllers
             _hotelService = hotelService;
         }
 
+        [CompensationSpan(CompensatingActionUrl = "http://localhost:5043/api/Compensating/compensate")]
         [HttpPost("bookcar")]
         public async Task<IActionResult> BookCar([FromBody] Car car)
         {
-            var b1 = Request.Headers.TryGetValue("x-correlation-id", out var correlationId);
-            var b2 = Guid.TryParse(correlationId, out var traceId);
-            if (!b1 || !b2) return BadRequest();
+            // Access the CompensationSpan instance from the ActionFilter
+            var compensationSpan = HttpContext.Items["CompensationSpan"] as CompensationSpan;
 
-            using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://localhost:5043/api/Compensating/compensate"), traceId, _loggerFactory))
-            {
-                // Book a Hotel
-                await _hotelService.BookHotel(car.PassportNumber, car.TripId, traceId);
-
-                compSpan.Complete();
-            }
+            // Book a Hotel
+            await _hotelService.BookHotel(car.PassportNumber, car.TripId, compensationSpan.TraceId);
 
             return Ok();
         }

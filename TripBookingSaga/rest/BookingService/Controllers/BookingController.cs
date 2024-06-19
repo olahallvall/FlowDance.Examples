@@ -23,8 +23,6 @@ namespace BookingService.Controllers
         [HttpPost("booktrip")]
         public async Task<IActionResult> BookTrip([FromBody] Trip trip)
         {
-            var traceId = Guid.NewGuid();
-
             // Access the CompensationSpan instance from the ActionFilter
             var compensationSpan = HttpContext.Items["CompensationSpan"] as CompensationSpan;
             
@@ -43,7 +41,7 @@ namespace BookingService.Controllers
             compensationSpan.AddCompensationData(trip.TripId.ToString(), "TripId");
 
             // Book a Car
-            await _carService.BookCar(trip.PassportNumber, trip.TripId, traceId);
+            await _carService.BookCar(trip.PassportNumber, trip.TripId, compensationSpan.TraceId);
 
             return Ok(trip);
         }

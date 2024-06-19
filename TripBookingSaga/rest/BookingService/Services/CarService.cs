@@ -22,10 +22,10 @@ namespace BookingService.Services
             httpRequest.Content = new StringContent(JsonConvert.SerializeObject(new Car() { PassportNumber = passportNumber, TripId = tripId }), Encoding.UTF8, $"application/json");
 
             var response = await httpClient.SendAsync(httpRequest);
-            if(response.IsSuccessStatusCode)
-                return true;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Error calling BookCar");
 
-            return false;
+            return true;
         }
     }
 }

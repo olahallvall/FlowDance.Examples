@@ -23,10 +23,10 @@ namespace HotelService.Services
             httpRequest.Content = new StringContent(JsonConvert.SerializeObject(new Flight() { PassportNumber = passportNumber, TripId = tripId }), Encoding.UTF8, $"application/json");
 
             var response = await httpClient.SendAsync(httpRequest);
-            if (response.IsSuccessStatusCode)
-                return true;
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Error calling BookFlight");
 
-            return false;
+            return true;
         }
     }
 }
