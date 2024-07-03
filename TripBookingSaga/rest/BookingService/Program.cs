@@ -1,6 +1,4 @@
 using BookingService.Services;
-using FlowDance.Client.RabbitMq;
-using FlowDance.Common.Commands;
 
 var builder = WebApplication.CreateBuilder(args);
 
