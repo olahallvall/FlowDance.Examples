@@ -20,7 +20,7 @@ namespace BookingService.Controllers
             _carService = carService;
         }
 
-        [CompensationSpan(CompensatingActionUrl = "http://localhost:5112/api/Compensating/compensate", CompensationSpanOption = CompensationSpanOption.RequiresNewBlockingCallChain)]
+        [CompensationSpan(CompensatingActionUrl = "http://host.docker.internal:5112/api/Compensating/compensate", CompensationSpanOption = CompensationSpanOption.RequiresNewBlockingCallChain)]
         [HttpPost("booktrip")]
         public async Task<IActionResult> BookTrip([FromBody] Trip trip)
         {

@@ -18,7 +18,7 @@ namespace HotelService.Controllers
             _flightService = flightService;
         }
 
-        [CompensationSpan(CompensatingActionUrl = "http://localhost:5075/api/Compensating/compensate")]
+        [CompensationSpan(CompensatingActionUrl = "http://host.docker.internal:5075/api/Compensating/compensate")]
         [HttpPost("bookhotel")]
         public async Task<IActionResult> BookHotel([FromBody] Hotel hotel)
         {

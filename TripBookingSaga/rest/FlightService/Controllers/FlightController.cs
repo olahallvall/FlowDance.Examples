@@ -24,7 +24,7 @@ namespace FlightService.Controllers
             var b2 = Guid.TryParse(correlationId, out var traceId);
             if (!b1 || !b2) return BadRequest();
 
-            using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://localhost:5113/api/Compensating/compensate"), Guid.Parse(correlationId), _loggerFactory))
+            using (var compSpan = new CompensationSpan(new HttpCompensatingAction("http://host.docker.internal:5113/api/Compensating/compensate"), Guid.Parse(correlationId), _loggerFactory))
             {
 
                 // Try to book a flight
@@ -36,7 +36,7 @@ namespace FlightService.Controllers
             return Ok();
         }
 
-        [CompensationSpan(CompensatingActionUrl = "http://localhost:5113/api/Compensating/compensate")]
+        [CompensationSpan(CompensatingActionUrl = "http://host.docker.internal:5113/api/Compensating/compensate")]
         [HttpPost("bookflight2")]
         public async Task<IActionResult> BookFlight2([FromBody] Flight flight)
         {

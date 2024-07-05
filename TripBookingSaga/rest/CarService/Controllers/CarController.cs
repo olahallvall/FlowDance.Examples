@@ -18,7 +18,7 @@ namespace CarService.Controllers
             _hotelService = hotelService;
         }
 
-        [CompensationSpan(CompensatingActionUrl = "http://localhost:5043/api/Compensating/compensate")]
+        [CompensationSpan(CompensatingActionUrl = "http://host.docker.internal:5043/api/Compensating/compensate")]
         [HttpPost("bookcar")]
         public async Task<IActionResult> BookCar([FromBody] Car car)
         {
