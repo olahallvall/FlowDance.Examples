@@ -6,7 +6,7 @@ For more info about FlowDance, please see [FlowDance.Documentation](https://olah
 # You need
 * Visual Studio 2022 or later
 * Azure Functions Core Tools (Azure Functions Core Tools lets you develop and test your functions on your local computer)
-* RabbitMQ with Streams activted
+* RabbitMQ with Streams activated
 
 # Inspiration
 * Compensating Action - https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction
