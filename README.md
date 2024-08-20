@@ -37,4 +37,4 @@ Restart the container **flowdance** in Docker Desktop.
 
 Download and install [Azure Functions Core Tools](https://go.microsoft.com/fwlink/?linkid=2174087)
 
-Open the [FlowDance.Examples.REST solution]([https://go.microsoft.com/fwlink/?linkid=2174087](https://github.com/olahallvall/FlowDance.Examples/blob/main/FlowDance.Examples.REST.sln))  
+Open the [FlowDance.Examples.REST solution](https://github.com/olahallvall/FlowDance.Examples/blob/main/FlowDance.Examples.REST.sln)  
