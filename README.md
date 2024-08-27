@@ -13,27 +13,7 @@ For more info about FlowDance, please see [FlowDance.Documentation](https://olah
 * Distributed Transactions with the Saga Pattern - https://dev.to/willvelida/the-saga-pattern-3o7p
 
 # Get started
-Install Docker Desktop and start it up.
-Download the file https://github.com/olahallvall/FlowDance/blob/master/DockerExternalDep/docker-compose.yml to local folder
-Open a command prompt in that folder and run the commands: 
- 
-**docker-compose up -d**
-
-Wait until both RabbitMQ and SQL Server has started.
-
-Run the commands below in the same command prompt window: 
-
-**docker exec rabbitmq rabbitmq-plugins enable rabbitmq_stream**
-
-**docker exec rabbitmq rabbitmqadmin declare queue --vhost=/ name=FlowDance.SpanCommands durable=true**
-
-**docker exec rabbitmq rabbitmqadmin declare queue --vhost=/ name=FlowDance.SpanEvents durable=true**
- 
-**docker exec -d mssql /opt/mssql-tools/bin/sqlcmd -S . -U SA -P "Admin@123" -Q "CREATE DATABASE [DurableDB] COLLATE Latin1_General_100_BIN2_UTF8"**
-
-**docker exec -it mssql /opt/mssql-tools/bin/sqlcmd -S . -U sa -P "Admin@123" -Q "SELECT name FROM sys.databases"**
- 
-Restart the container **flowdance** in Docker Desktop. 
+See instructions - https://github.com/olahallvall/FlowDance 
 
 Download and install [Azure Functions Core Tools](https://go.microsoft.com/fwlink/?linkid=2174087)
 
